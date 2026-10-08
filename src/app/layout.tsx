@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "@/components/NavBar";
 import FooterSection from "@/components/FooterSection";
 
+
 const notoSansBengali = Noto_Sans_Bengali({
   subsets: ["latin", "bengali"],
 });
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <NavBar />
+        
 
         <div className="bg-[#F0F5F0] flex-1">{children}</div>
 

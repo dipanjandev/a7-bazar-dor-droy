@@ -1,6 +1,7 @@
 import Image from "next/image";
 import CategoryList from "./CategoryList";
 import { Suspense } from "react";
+import Marquee from "./Marquee";
 
 const NavBar = () => {
   return (
@@ -29,7 +30,7 @@ const NavBar = () => {
       <div className="border border-gray-100" />
 
       {/* Category List */}
-      <div className="container mx-auto">
+      <div>
         <Suspense
           fallback={
             <div className="grid place-items-center w-full">
@@ -37,7 +38,10 @@ const NavBar = () => {
             </div>
           }
         >
-          <CategoryList />
+          <div className="container mx-auto">
+            <CategoryList />
+          </div>
+          <Marquee />
         </Suspense>
       </div>
     </div>
