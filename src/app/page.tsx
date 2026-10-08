@@ -1,7 +1,17 @@
-export default function Home() {
+import AllProductsSection from "@/components/AllProductsSection";
+import HeroBaner from "@/components/HeroBaner";
+import PriceDownSection from "@/components/PriceDownSection";
+import PriceUpSection from "@/components/PriceUpSection";
+
+export default async function Home() {
+  const res = await fetch(`${process.env.BACKEND_URL}/api/bazardor/products`);
+  const allProducts = await res.json();
   return (
     <div>
-      <h1>এটা বডি সেকশন</h1>
+      <HeroBaner />
+      <PriceUpSection pus={allProducts} />
+      <PriceDownSection pds={allProducts} />
+      <AllProductsSection aps={allProducts} />
     </div>
   );
 }

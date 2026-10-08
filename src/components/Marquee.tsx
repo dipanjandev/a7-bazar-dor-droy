@@ -14,9 +14,7 @@ interface IMarqueeType {
 }
 
 const Marquee = async () => {
-  const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
-  );
+  const res = await fetch(`${process.env.BACKEND_URL}/api/bazardor/products`);
   const data: IMarqueeType[] = await res.json();
   const toBengaliNumber = (num: number) => {
     return num.toLocaleString("bn-BD");
