@@ -1,4 +1,3 @@
-import Image from "next/image";
 import CategoryList from "./CategoryList";
 import { Suspense } from "react";
 import Marquee from "./Marquee";
@@ -13,14 +12,10 @@ const NavBar = () => {
       <div className="flex justify-between items-center container mx-auto">
         <Link href={"/"}>
           <div className="flex items-center gap-3 py-2">
-            <div className="h-auto w-auto bg-green-700 p-2 rounded-lg">
-              <Image
-                src={"/logo-icon.png"}
-                width={30}
-                height={30}
-                alt="Header Logo"
-              />
-            </div>
+            <span className="grid size-10 place-items-center rounded-xl bg-green-700 text-lg text-primary-content">
+              🛒
+            </span>
+
             <div>
               <h1 className="font-bold text-2xl">বাজার দর</h1>
               {/* Date Under the logo */}

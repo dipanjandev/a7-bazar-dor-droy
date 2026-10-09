@@ -1,7 +1,5 @@
-"use client";
-
-import { useState } from "react";
 import ProductCard from "./ProductCard";
+import SortDropdown from "./SortDropdown"; // তোমার তৈরি করা ড্রপডাউন কম্পোনেন্ট
 
 interface ICardDataType {
   id: number;
@@ -22,30 +20,25 @@ interface ICardDataType {
   };
 }
 
-export default function AllProductsSection({ aps }: { aps: ICardDataType[] }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [sortBy, setSortBy] = useState("default");
+interface AllProductsSectionProps {
+  aps: ICardDataType[];
+  sort?: string; // URL searchParams থেকে আসা মান (default | low-to-high | high-to-low)
+}
 
-  // ড্রপডাউনের জন্য অপশন তালিকা। এখানে as const লিখে আমি ডাটা গুলো রিড অনলি করে দিলাম। এক কথায় এখন ফিক্সড।
-  const sortOptions = [
-    { label: "ডিফল্ট", value: "default" },
-    { label: "দাম: কম থেকে বেশি", value: "low-to-high" },
-    { label: "দাম: বেশি থেকে কম", value: "high-to-low" },
-  ] as const;
-
-  // সর্টিং লজিক
+export default function AllProductsSection({
+  aps,
+  sort = "default",
+}: AllProductsSectionProps) {
+  // সার্ভার সাইডেই সর্টিং হচ্ছে (SEO-র কোনো ক্ষতি হবে না)
   const sortedProducts = [...aps].sort((a, b) => {
-    if (sortBy === "low-to-high") {
+    if (sort === "low-to-high") {
       return a.today - b.today; // দাম কম থেকে বেশি
     }
-    if (sortBy === "high-to-low") {
+    if (sort === "high-to-low") {
       return b.today - a.today; // দাম বেশি থেকে কম
     }
-    return 0; // ডিফল্ট যেভাবে আছে
+    return 0; // ডিফল্ট
   });
-
-  // বর্তমান অপশনের নাম
-  const currentLabel = sortOptions.find((opt) => opt.value === sortBy)?.label;
 
   return (
     <section className="space-y-4 container mx-auto mt-10">
@@ -58,64 +51,11 @@ export default function AllProductsSection({ aps }: { aps: ICardDataType[] }) {
           </p>
         </div>
 
-        {/* ড্রপডাউন কন্টেইনার */}
-        <div className="flex items-center gap-2">
-          <span>সাজান</span>
-
-          <div className="relative">
-            {/* সাজান বাটন */}
-            <button
-              type="button"
-              onClick={() => setIsOpen((prev) => !prev)}
-              className="flex items-center gap-1.5 bg-white border border-gray-200 px-3 py-1.5 rounded-lg text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition"
-            >
-              <span>{currentLabel}</span>
-              <span className="text-[10px] text-gray-500">
-                {isOpen ? "▲" : "▼"}
-              </span>
-            </button>
-
-            {/* মেনু লিস্ট (ছবিতে যেমন ভাসমান মেনু দেখাচ্ছে) */}
-            {isOpen && (
-              <>
-                {/* বাইরে ক্লিক করলে বন্ধ হওয়ার জন্য অদৃশ্য ব্যাকড্রপ */}
-                <div
-                  className="fixed inset-0 z-10"
-                  onClick={() => setIsOpen(false)}
-                />
-
-                <div className="absolute right-0 mt-1 w-44 bg-white rounded-xl shadow-xl border border-gray-100 py-1.5 z-20 space-y-0.5">
-                  {sortOptions.map((opt) => {
-                    const isSelected = sortBy === opt.value;
-                    return (
-                      <button
-                        key={opt.value}
-                        type="button"
-                        onClick={() => {
-                          setSortBy(opt.value);
-                          setIsOpen(false);
-                        }}
-                        className={`w-full text-left px-3 py-1.5 text-xs flex items-center gap-2 hover:bg-gray-50 transition ${
-                          isSelected
-                            ? "font-semibold text-gray-900"
-                            : "text-gray-600"
-                        }`}
-                      >
-                        <span className="w-3 text-xs">
-                          {isSelected ? "✓" : ""}
-                        </span>
-                        <span>{opt.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </>
-            )}
-          </div>
-        </div>
+        {/* আলাদা তৈরি করা সর্ট ড্রপডাউন কম্পোনেন্ট */}
+        <SortDropdown />
       </div>
 
-      {/* সাজানো পণ্যের গ্রিড */}
+      {/* সাজানো পণ্যের গ্রিড (সার্ভার থেকে পিওর HTML রেন্ডার হবে) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {sortedProducts.map((item) => (
           <ProductCard key={item.id} singleProduct={item} />
