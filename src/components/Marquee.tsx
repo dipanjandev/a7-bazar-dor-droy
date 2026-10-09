@@ -4,7 +4,7 @@ import "react-marquee-text/dist/styles.css";
 interface IMarqueeType {
   id: number;
   nameBn: string;
-  categoryIcon: string;
+  image: string;
   unit: string;
   today: number;
   change: {
@@ -39,7 +39,7 @@ const Marquee = async () => {
                   {/* icon */}
                   <span>
                     <span className="font-semibold text-lg">
-                      {mq.categoryIcon} {mq.nameBn}
+                      {mq.image} {mq.nameBn}
                     </span>{" "}
                     <span className="text-sm text-gray-600">
                       {toBengaliNumber(mq.today)} {formatUnit(mq.unit)} টাকা/
