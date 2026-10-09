@@ -3,6 +3,7 @@
 import { useSession, signOut } from "@/lib/auth-client";
 import Link from "next/link";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const UserStatus = () => {
   const { data: session } = useSession();
@@ -16,6 +17,13 @@ const UserStatus = () => {
     ? userInfo.name.trim().charAt(0).toUpperCase()
     : "U";
 
+  const handleSignOut = async () => {
+    setIsOpen(false);
+    try {
+      await signOut();
+      toast.success("সফলভাবে সাইন আউট হয়েছে!");
+    } catch {}
+  };
   return (
     <div>
       {userInfo ? (
@@ -75,10 +83,7 @@ const UserStatus = () => {
                   {/* সাইন আউট বাটন */}
                   <button
                     type="button"
-                    onClick={async () => {
-                      setIsOpen(false);
-                      await signOut();
-                    }}
+                    onClick={handleSignOut}
                     className="w-full flex items-center gap-2.5 text-rose-600 hover:text-rose-700 transition pt-1 cursor-pointer"
                   >
                     <span className="text-base">↩</span>

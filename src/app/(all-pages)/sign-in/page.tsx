@@ -3,6 +3,7 @@
 import { signIn } from "@/lib/auth-client";
 import { Button, FieldError, Input, Label, TextField } from "@heroui/react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
 
@@ -16,12 +17,30 @@ const SignInPage = () => {
     };
     const { data, error } = await signIn.email({
       ...user,
-      callbackURL: "/",
     });
     if (data) {
+      redirect("/");
       toast.success("Login Successfully");
-    } else if (error) {
+    }
+    if (error) {
       toast.error("Wrong Email & Password");
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    const { data } = await signIn.social({
+      provider: "google",
+    });
+    if (data) {
+      toast.success("Select Google Account");
+    }
+  };
+  const handleGithubSignIn = async () => {
+    const { data } = await signIn.social({
+      provider: "github",
+    });
+    if (data) {
+      toast.success("Successfully Login to Github");
     }
   };
 
@@ -101,7 +120,16 @@ const SignInPage = () => {
             </Button>
           </div>
         </form>
+        <div className="divider">অথবা</div>
 
+        <div className="flex gap-5">
+          <button onClick={handleGoogleSignIn} className="btn btn-active">
+            Google দিয়ে চালিয়ে যান
+          </button>
+          <button onClick={handleGithubSignIn} className="btn btn-active">
+            Github দিয়ে চালিয়ে যান
+          </button>
+        </div>
         {/* ফুটার লিঙ্ক */}
         <div className="text-center pt-2">
           <p className="text-xs text-gray-600">
