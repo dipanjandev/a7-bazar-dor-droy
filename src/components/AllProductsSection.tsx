@@ -1,5 +1,5 @@
 import ProductCard from "./ProductCard";
-import SortDropdown from "./SortDropdown"; // তোমার তৈরি করা ড্রপডাউন কম্পোনেন্ট
+import SortDropdown from "./SortDropdown";
 
 interface ICardDataType {
   id: number;
@@ -22,7 +22,7 @@ interface ICardDataType {
 
 interface AllProductsSectionProps {
   aps: ICardDataType[];
-  sort?: string; // URL searchParams থেকে আসা মান (default | low-to-high | high-to-low)
+  sort?: string;
 }
 
 export default function AllProductsSection({
@@ -41,22 +41,27 @@ export default function AllProductsSection({
   });
 
   return (
-    <section className="space-y-4 container mx-auto mt-10">
-      <div className="flex items-center justify-between text-xs sm:text-sm text-gray-500 pb-1">
-        <div>
-          <h2 className="text-xl font-bold text-gray-900">সব পণ্য</h2>
-          <p>
+    <section className="space-y-4 container mx-auto px-4 sm:px-6 lg:px-0 mt-8 sm:mt-10 mb-8 sm:mb-10">
+      {/* হেডার ও সাজান ড্রপডাউন: মোবাইলে টেক্সট ও ড্রপডাউন যাতে ভেঙে নিচে না পড়ে সেজন্য items-end বা flex-row সুন্দর বিন্যাস */}
+      <div className="flex flex-row items-end justify-between text-xs sm:text-sm text-gray-500 pb-1 gap-2">
+        <div className="space-y-0.5">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
+            সব পণ্য
+          </h2>
+          <p className="text-xs sm:text-sm text-gray-500">
             মোট {sortedProducts.length.toLocaleString("bn-BD")}টি পণ্য দেখানো
             হচ্ছে
           </p>
         </div>
 
-        {/* আলাদা তৈরি করা সর্ট ড্রপডাউন কম্পোনেন্ট */}
-        <SortDropdown />
+        {/* সর্ট ড্রপডাউন (মোবাইলে মাপসই রাখার জন্য shrink-0) */}
+        <div className="shrink-0">
+          <SortDropdown />
+        </div>
       </div>
 
-      {/* সাজানো পণ্যের গ্রিড (সার্ভার থেকে পিওর HTML রেন্ডার হবে) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* সাজানো পণ্যের গ্রিড: মোবাইল: ১ কলাম, ট্যাবলেট: ২ কলাম, ডেস্কটপ: ৩ কলাম */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
         {sortedProducts.map((item) => (
           <ProductCard key={item.id} singleProduct={item} />
         ))}

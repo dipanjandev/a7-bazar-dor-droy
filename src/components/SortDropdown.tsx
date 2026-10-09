@@ -32,28 +32,35 @@ export default function SortDropdown() {
   };
 
   return (
-    <div className="flex items-center gap-2">
-      <span className="text-gray-600 text-xs sm:text-sm">সাজান</span>
+    <div className="flex items-center gap-1.5 sm:gap-2">
+      <span className="text-gray-600 text-xs sm:text-sm whitespace-nowrap">
+        সাজান
+      </span>
 
       <div className="relative">
         <button
           type="button"
           onClick={() => setIsOpen((prev) => !prev)}
-          className="flex items-center gap-2 bg-white border border-gray-200 px-3 py-1.5 rounded-lg text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition cursor-pointer"
+          className="flex items-center gap-1.5 sm:gap-2 bg-white border border-gray-200 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 active:bg-gray-100 transition cursor-pointer select-none"
         >
-          <span>{currentLabel}</span>
-          <span className="text-[10px] text-gray-500">
+          <span className="truncate max-w-27.5 sm:max-w-none">
+            {currentLabel}
+          </span>
+          <span className="text-[9px] sm:text-[10px] text-gray-500 shrink-0">
             {isOpen ? "▲" : "▼"}
           </span>
         </button>
 
         {isOpen && (
           <>
+            {/* বাইরে ক্লিক করলে বন্ধ হওয়ার জন্য ব্যাকড্রপ */}
             <div
-              className="fixed inset-0 z-10"
+              className="fixed inset-0 z-30"
               onClick={() => setIsOpen(false)}
             />
-            <div className="absolute right-0 mt-1 w-44 bg-white rounded-xl shadow-xl border border-gray-100 py-1.5 z-20 space-y-0.5">
+
+            {/* ড্রপডাউন অপশন তালিকা */}
+            <div className="absolute right-0 mt-1.5 w-44 sm:w-48 bg-white rounded-xl shadow-xl border border-gray-100 py-1.5 z-40 space-y-0.5 animate-in fade-in duration-100">
               {sortOptions.map((opt) => {
                 const isSelected = currentSort === opt.value;
                 return (
@@ -61,14 +68,16 @@ export default function SortDropdown() {
                     key={opt.value}
                     type="button"
                     onClick={() => handleSortChange(opt.value)}
-                    className={`w-full text-left px-3 py-1.5 text-xs flex items-center gap-2 hover:bg-gray-50 transition cursor-pointer ${
+                    className={`w-full text-left px-3 py-2 text-xs flex items-center gap-2 hover:bg-gray-50 active:bg-gray-100 transition cursor-pointer ${
                       isSelected
-                        ? "font-semibold text-gray-900"
+                        ? "font-semibold text-gray-900 bg-gray-50/70"
                         : "text-gray-600"
                     }`}
                   >
-                    <span className="w-3 text-xs">{isSelected ? "✓" : ""}</span>
-                    <span>{opt.label}</span>
+                    <span className="w-3 text-xs text-emerald-600 shrink-0">
+                      {isSelected ? "✓" : ""}
+                    </span>
+                    <span className="truncate">{opt.label}</span>
                   </button>
                 );
               })}

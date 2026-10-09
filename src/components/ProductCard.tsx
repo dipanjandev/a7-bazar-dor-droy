@@ -48,37 +48,40 @@ export default function ProductCard({
   );
 
   return (
-    <Link href={`/product/${singleProduct.slug}`}>
-      <div className="bg-white p-5 rounded-2xl border border-gray-100/90 shadow-sm flex flex-col justify-between transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-lg cursor-pointer">
+    <Link
+      href={`/product/${singleProduct.slug}`}
+      className="block h-full group"
+    >
+      <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gray-100/90 shadow-sm flex flex-col justify-between h-full transition-all duration-300 ease-out hover:-translate-y-1 sm:hover:-translate-y-1.5 hover:shadow-md sm:hover:shadow-lg cursor-pointer">
         {/* উপরের অংশ: আইকন, নাম ও পরিমাণ */}
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-2xl shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)]">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="size-11 sm:size-12 rounded-xl bg-gray-50 flex items-center justify-center text-xl sm:text-2xl shadow-[inset_0_1px_2px_rgba(0,0,0,0.05)] shrink-0">
             {singleProduct.image || singleProduct.categoryIcon}
           </div>
-          <div>
-            <h3 className="text-base font-bold text-gray-900 leading-tight">
+          <div className="min-w-0">
+            <h3 className="text-sm sm:text-base font-bold text-gray-900 leading-tight truncate group-hover:text-emerald-700 transition-colors">
               {singleProduct.nameBn}
             </h3>
-            <p className="text-xs text-gray-500 font-normal mt-0.5">
+            <p className="text-[11px] sm:text-xs text-gray-500 font-normal mt-0.5">
               প্রতি {formatUnit(singleProduct.unit)}
             </p>
           </div>
         </div>
 
         {/* নিচের অংশ: আজকের দাম ও শতকরা পরিবর্তন */}
-        <div className="flex items-end justify-between mt-6">
+        <div className="flex items-end justify-between mt-4 sm:mt-6 pt-1">
           <div>
-            <span className="text-xs text-gray-500 font-medium block">
+            <span className="text-[11px] sm:text-xs text-gray-500 font-medium block">
               আজকের দাম
             </span>
-            <span className="text-xl font-extrabold text-gray-900 leading-tight">
+            <span className="text-lg sm:text-xl font-extrabold text-gray-900 leading-tight">
               {singleProduct.today?.toLocaleString("bn-BD")} টাকা
             </span>
           </div>
 
           {/* পরিবর্তনের ব্যাজ */}
           <div
-            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold ${
+            className={`flex items-center gap-0.5 sm:gap-1 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-xs font-semibold shrink-0 ${
               isUp
                 ? "bg-rose-50 text-rose-600"
                 : isDown
@@ -86,7 +89,7 @@ export default function ProductCard({
                   : "bg-gray-100 text-gray-600"
             }`}
           >
-            <span className="text-[10px]">
+            <span className="text-[9px] sm:text-[10px]">
               {isUp ? "▲" : isDown ? "▼" : "—"}
             </span>
             <span>{changePctBn}%</span>

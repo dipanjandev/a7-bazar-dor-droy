@@ -7,43 +7,60 @@ import UserStatus from "./UserStatus";
 
 const NavBar = () => {
   return (
-    <div>
-      {/* Left side and right side option */}
-      <div className="flex justify-between items-center container mx-auto">
-        <Link href={"/"}>
-          <div className="flex items-center gap-3 py-2">
-            <span className="grid size-10 place-items-center rounded-xl bg-green-700 text-lg text-primary-content">
-              🛒
-            </span>
+    <>
+      {/* স্টিকি, ব্লার ব্যাকগ্রাউন্ডসহ মূল হেডার (সার্ভার কম্পোনেন্ট) */}
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        {/* ১. টপ বার: লোগো ও ইউজার বাটন */}
+        <div className="container mx-auto px-3 sm:px-4">
+          <div className="flex justify-between items-center py-2 sm:py-2.5">
+            <Link href={"/"}>
+              <div className="flex items-center gap-2 sm:gap-3">
+                <span className="grid size-9 sm:size-10 place-items-center rounded-xl bg-green-700 text-base sm:text-lg text-white shadow-sm shrink-0">
+                  🛒
+                </span>
 
-            <div>
-              <h1 className="font-bold text-2xl">বাজার দর</h1>
-              {/* Date Under the logo */}
-              <DateNav />
+                <div>
+                  <h1 className="font-bold text-lg sm:text-2xl text-gray-900 leading-tight">
+                    বাজার দর
+                  </h1>
+                  <DateNav />
+                </div>
+              </div>
+            </Link>
+
+            {/* ইউজার স্ট্যাটাস (সাইন ইন / সাইন আপ বা প্রোফাইল) */}
+            <div className="shrink-0 scale-90 sm:scale-100 origin-right">
+              <UserStatus />
             </div>
           </div>
-        </Link>
-        {/* নিচের কম্পোনেন্টে ইউজার এর জন্য লগিন বাটন এবং লগিন ‍থাকলে ইনফরমেশন বাটন রয়েছে */}
-        <UserStatus />
-      </div>
-      <div className="border border-gray-100" />
+        </div>
 
-      {/* Category List */}
-      <div>
-        <Suspense
-          fallback={
-            <div className="grid place-items-center w-full h-26">
-              <span className="loading loading-spinner loading-lg"></span>
-            </div>
-          }
-        >
-          <div className="container mx-auto">
+        {/* 👉 দাগটি এখন container-এর বাইরে, তাই পুরো স্ক্রিনের শুরু থেকে শেষ পর্যন্ত পাবে */}
+        <div className="w-full border-t border-gray-100" />
+
+        {/* ২. ক্যাটাগরি লিস্ট */}
+        <div className="container mx-auto px-3 sm:px-4 py-1">
+          <Suspense
+            fallback={
+              <div className="grid place-items-center w-full h-10">
+                <span className="loading loading-spinner loading-sm text-green-700"></span>
+              </div>
+            }
+          >
             <CategoryList />
-          </div>
+          </Suspense>
+        </div>
+      </header>
+
+      {/* মারকিউরি (হেডারের বাইরে থাকায় নিচে স্ক্রল করলে নিজে থেকেই হাইড হয়ে যাবে) */}
+      <div className="w-full bg-white border-b border-gray-100 overflow-hidden">
+        <Suspense
+          fallback={<div className="h-9 w-full bg-gray-50 animate-pulse"></div>}
+        >
           <Marquee />
         </Suspense>
       </div>
-    </div>
+    </>
   );
 };
 

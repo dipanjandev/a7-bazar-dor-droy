@@ -23,37 +23,45 @@ const Marquee = async () => {
   const formatUnit = (unit: string) => {
     if (unit === "kg") return "কেজি";
     if (unit === "litre") return "লিটার";
+    return unit;
   };
 
-  //   console.log(data);
-
   return (
-    <div>
-      <MarqueeText direction="right" duration={20}>
+    <div className="w-full bg-[#FAFBF9] border-y border-gray-100/80 py-1.5 overflow-hidden">
+      <MarqueeText direction="right" duration={25}>
         {data.map((mq) => {
           const isUp = mq.change?.dir === "up";
           return (
-            <div key={mq.id} className="border-l border-gray-300">
-              <div className="mb-3 mx-3">
-                <span className="flex border-gray-200 gap-2">
-                  {/* icon */}
-                  <span>
-                    <span className="font-semibold text-lg">
-                      {mq.image} {mq.nameBn}
-                    </span>{" "}
-                    <span className="text-sm text-gray-600">
-                      {toBengaliNumber(mq.today)} {formatUnit(mq.unit)} টাকা/
-                    </span>
+            <div
+              key={mq.id}
+              className="inline-flex items-center border-r border-gray-200/70 px-3 sm:px-4 text-xs sm:text-sm whitespace-nowrap select-none"
+            >
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                {/* আইকন ও পণ্যের নাম */}
+                <span className="flex items-center gap-1 font-medium text-gray-800">
+                  <span className="text-sm sm:text-base leading-none">
+                    {mq.image}
                   </span>
+                  <span className="text-xs sm:text-sm font-semibold">
+                    {mq.nameBn}
+                  </span>
+                </span>
 
-                  {/* Arrow Sign for indicate */}
-                  <span
-                    className={`flex items-center gap-0.5 text-xs font-semibold ${isUp ? "text-red-500" : "text-emerald-600"}`}
-                  >
-                    <span>
-                      {isUp ? "▲" : "▼"} {toBengaliNumber(mq.change.pct)}%
-                    </span>
+                {/* দাম এবং ইউনিট */}
+                <span className="text-gray-600 text-[11px] sm:text-xs">
+                  {toBengaliNumber(mq.today)} টাকা/{formatUnit(mq.unit)}
+                </span>
+
+                {/* পরিবর্তনের তীর চিহ্ন ও শতাংশ */}
+                <span
+                  className={`inline-flex items-center font-bold text-[10px] sm:text-xs pl-0.5 ${
+                    isUp ? "text-red-500" : "text-emerald-600"
+                  }`}
+                >
+                  <span className="scale-75 sm:scale-90 mr-0.5">
+                    {isUp ? "▲" : "▼"}
                   </span>
+                  <span>{toBengaliNumber(mq.change?.pct ?? 0)}%</span>
                 </span>
               </div>
             </div>

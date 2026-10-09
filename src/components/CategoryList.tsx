@@ -10,14 +10,18 @@ interface IdataType {
 const CategoryList = async () => {
   const res = await fetch(`${process.env.BACKEND_URL}/api/bazardor/categories`);
   const categories: IdataType[] = await res.json();
-  //   console.log(categories, "from catagories categories");
+
   return (
-    <div className="flex gap-5">
+    <div className="flex items-center gap-1.5 sm:gap-4 overflow-x-auto no-scrollbar py-1">
       {categories.map((ctg, ind) => (
-        <Link key={ind} href={`/category/${ctg.slug}`}>
-          <div className="flex hover:bg-gray-100 rounded-2xl p-2 my-3">
-            <p>{ctg.icon}</p>
-            <p className="font-semibold">{ctg.nameBn}</p>
+        <Link key={ind} href={`/category/${ctg.slug}`} className="shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-xl hover:bg-gray-100 transition-colors duration-150 cursor-pointer">
+            <span className="text-sm sm:text-base leading-none">
+              {ctg.icon}
+            </span>
+            <span className="text-xs sm:text-sm font-semibold text-gray-700 whitespace-nowrap">
+              {ctg.nameBn}
+            </span>
           </div>
         </Link>
       ))}
