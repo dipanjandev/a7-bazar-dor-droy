@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import Marquee from "./Marquee";
 import Link from "next/link";
 import DateNav from "./DateNav";
+import UserStatus from "./UserStatus";
 
 const NavBar = () => {
   return (
@@ -27,10 +28,8 @@ const NavBar = () => {
             </div>
           </div>
         </Link>
-        <div className="flex gap-3">
-          <button className="btn">সাইন ইন</button>
-          <button className="btn bg-green-700 text-white">সাইন আপ</button>
-        </div>
+        {/* নিচের কম্পোনেন্টে ইউজার এর জন্য লগিন বাটন এবং লগিন ‍থাকলে ইনফরমেশন বাটন রয়েছে */}
+        <UserStatus />
       </div>
       <div className="border border-gray-100" />
 
