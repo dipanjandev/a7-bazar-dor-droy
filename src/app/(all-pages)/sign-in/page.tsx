@@ -19,8 +19,9 @@ const SignInPage = () => {
       ...user,
     });
     if (data) {
+      toast.success(`${data.user.name} Login Successfully`);
       redirect("/");
-      toast.success("Login Successfully");
+      // console.log(data.user.name);
     }
     if (error) {
       toast.error("Wrong Email & Password");

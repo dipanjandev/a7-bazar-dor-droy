@@ -15,7 +15,7 @@ const UserStatus = () => {
   // নামের প্রথম অক্ষর বড় হাতের করা
   const firstLetter = userInfo?.name
     ? userInfo.name.trim().charAt(0).toUpperCase()
-    : "U";
+    : "";
 
   const handleSignOut = async () => {
     setIsOpen(false);

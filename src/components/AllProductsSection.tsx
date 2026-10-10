@@ -41,7 +41,10 @@ export default function AllProductsSection({
   });
 
   return (
-    <section className="space-y-4 container mx-auto px-4 sm:px-6 lg:px-0 mt-8 sm:mt-10 mb-8 sm:mb-10">
+    <section
+      id="all-products"
+      className="space-y-4 container mx-auto px-4 sm:px-6 lg:px-0 mt-8 sm:mt-10 mb-8 sm:mb-10 scroll-mt-35"
+    >
       {/* হেডার ও সাজান ড্রপডাউন: মোবাইলে টেক্সট ও ড্রপডাউন যাতে ভেঙে নিচে না পড়ে সেজন্য items-end বা flex-row সুন্দর বিন্যাস */}
       <div className="flex flex-row items-end justify-between text-xs sm:text-sm text-gray-500 pb-1 gap-2">
         <div className="space-y-0.5">

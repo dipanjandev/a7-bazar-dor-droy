@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 বাজার দর (Bazar Dor)
 
-## Getting Started
+> **আজকের বাজারের দাম এক নজরে — জানুন, তুলনা করুন এবং সচেতন থাকুন।**
 
-First, run the development server:
+---
+
+## 📌 প্রজেক্ট পরিচিতি (Short Description)
+
+**বাজার দর** হলো বাজারে বর্তমান পণ্যের দামের একটি নির্ভরযোগ্য তালিকা। যেখানে আপনি আপনার নিত্যপ্রয়োজনীয় সকল পণ্যের হালনাগাদ দাম দেখতে পারবেন। একইসাথে প্রতিদিন কোন কোন পণ্যের দাম বৃদ্ধি পেয়েছে এবং কোন পণ্যের দাম কমেছে—তা স্পষ্টভাবে তুলনা ও পর্যবেক্ষণ করতে পারবেন।
+
+---
+
+## ✨ মূল সুবিধাসমূহ (Key Features)
+
+1. **দৈনিক বাজারমূল্য:** আপনি এখানে সকল নিত্যপ্রয়োজনীয় পণ্যের আজকের বাজারমূল্য দেখতে পারবেন।
+2. **বাজারভিত্তিক তুলনা:** বিভিন্ন বাজারের ওপর ভিত্তি করে আলাদা আলাদা আজকের দাম পর্যালোচনা করতে পারবেন।
+3. **দামের সারসংক্ষেপ:** প্রতিটি পণ্যের বিস্তারিত পরিসংখ্যান যেমন—সর্বনিম্ন দাম, সর্বাধিক দাম এবং গড় দাম এক নজরে দেখতে পারবেন।
+4. **স্মার্ট সর্টিং ব্যবস্থা:** আপনার ইচ্ছামতো দামগুলো সাজিয়ে নিতে পারেন—ডিফল্ট, দাম: কম থেকে বেশি এবং দাম: বেশি থেকে কম।
+5. **নিরাপদ অ্যাকাউন্ট ও প্রোফাইল ব্যবস্থাপনা:** ইমেইল বা ওয়ান-ক্লিক সোশ্যাল লগইন (Google ও GitHub) ব্যবহার করে সহজেই সাইন আপ ও সাইন ইন করতে পারবেন, সাথে নিজের প্রোফাইলের তথ্য আপডেট করার পূর্ণ সুবিধা রয়েছে।
+
+---
+
+## 🛠️ ব্যবহৃত প্রযুক্তিসমূহ (Technologies Used)
+
+- **ফ্রন্টএন্ড ফ্রেমওয়ার্ক:** [Next.js](https://nextjs.org/) (App Router, Server Components & TypeScript)
+- **স্টাইলিং:** [Tailwind CSS](https://tailwindcss.com/)
+- **কম্পোনেন্ট লাইব্রেরি:** [HeroUI](https://heroui.com/) & [DaisyUI](https://daisyui.com/)
+- **অথেনটিকেশন:** Better Auth (Google & GitHub OAuth সহ)
+- **নোটিফিকেশন:** [React Hot Toast](https://react-hot-toast.com/)
+
+---
+
+## 🚀 লোকাল সেটআপ ও রান করার নিয়ম (Getting Started)
+
+প্রজেক্টটি আপনার লোকাল মেশিনে রান করতে নিচের ধাপগুলো অনুসরণ করুন:
+
+১. রিপোজিটরিটি ক্লোন করুন:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone [https://github.com/your-username/bazar-dor.git](https://github.com/your-username/bazar-dor.git)
+cd bazar-dor
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

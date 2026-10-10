@@ -1,6 +1,7 @@
 import React from "react";
 import DateNav from "./DateNav";
 import Image from "next/image";
+import Link from "next/link";
 
 const HeroBaner = () => {
   return (
@@ -24,9 +25,11 @@ const HeroBaner = () => {
           সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
         </p>
 
-        <button className="mt-5 sm:mt-8 lg:mt-10 btn bg-[#05893E] hover:bg-[#046e32] text-white px-8 sm:px-10 py-2 sm:py-2.5 rounded-xl transition-colors duration-200 shadow-sm">
-          সব পণ্য দেখুন
-        </button>
+        <Link href="#all-products">
+          <button className="mt-5 sm:mt-8 lg:mt-10 btn bg-[#05893E] hover:bg-[#046e32] text-white px-8 sm:px-10 py-2 sm:py-2.5 rounded-xl transition-colors duration-200 shadow-sm">
+            সব পণ্য দেখুন
+          </button>
+        </Link>
       </div>
 
       {/* ডান পাশ: মোবাইলে নিচে এবং ডেস্কটপে ডানে */}
