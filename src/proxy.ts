@@ -1,18 +1,21 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { auth } from "./lib/auth";
-import { headers } from "next/headers";
+// import { headers } from "next/headers";
 
 // This function can be marked `async` if using `await` inside
 export async function proxy(request: NextRequest) {
   const session = await auth.api.getSession({
-    headers: await headers(),
+    // headers: await headers(),
+    headers: request.headers,
   });
   const userLogin = session?.user;
   //   console.log(userLogin);
   if (!userLogin) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
+  // এখানে একটি রিটার্ন যোগ করা হয়েছে।
+  return NextResponse.next();
 }
 
 export const config = {
