@@ -3,7 +3,7 @@
 import { signIn } from "@/lib/auth-client";
 import { Button, FieldError, Input, Label, TextField } from "@heroui/react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
 
@@ -20,7 +20,8 @@ const SignInPage = () => {
     });
     if (data) {
       toast.success(`${data.user.name} Login Successfully`);
-      redirect("/");
+      // redirect("/");
+      window.location.replace("/");
       // console.log(data.user.name);
     }
     if (error) {
